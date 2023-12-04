@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Таблица умножения</title>
+</head>
+<body>
+<h1>Таблица умножения</h1>
+<table>
+    <thead>
+    <tr>
+        <th>&times;</th>
+        <th>1</th>
+        <th>2</th>
+        <th>3</th>
+        <th>4</th>
+        <th>5</th>
+        <th>6</th>
+        <th>7</th>
+        <th>8</th>
+        <th>9</th>
+        <th>10</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Создаем строки для таблицы умножения -->
+    <!-- В этом блоке JavaScript код будет добавлять ячейки с результатами умножения -->
+
+    <script>
+        // Получаем элемент tbody таблицы
+        var tbody = document.querySelector('tbody');
+
+        // Создаем строки и ячейки для таблицы умножения
+        for (var i = 1; i <= 10; i++) {
+            var row = document.createElement('tr');
+            var multiplicationSymbol = document.createElement('td');
+            multiplicationSymbol.textContent = i;
+
+            // Создаем ячейки с результатами умножения
+            for (var j = 1; j <= 10; j++) {
+                var cell = document.createElement('td');
+                cell.textContent = i * j;
+                row.appendChild(cell);
+            }
+
+            // Добавляем ячейки в строку
+            row.appendChild(multiplicationSymbol);
+
+            // Добавляем строку в tbody
+            tbody.appendChild(row);
+        }
+    </script>
+    </tbody>
+</table>
+</body>
+</html>

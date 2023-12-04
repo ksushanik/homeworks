@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Календарь</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Календарь</h1>
+    <table id="calendar">
+        <thead>
+            <tr>
+                <th>Пн</th>
+                <th>Вт</th>
+                <th>Ср</th>
+                <th>Чт</th>
+                <th>Пт</th>
+                <th>Сб</th>
+                <th>Вс</th>
+            </tr>
+        </thead>
+        <tbody id="calendar-body">
+        </tbody>
+    </table>
+
+    <script>
+        // Получаем текущую дату
+        var currentDate = new Date();
+
+        // Получаем номер текущего месяца (от 0 до 11)
+        var currentMonth = currentDate.getMonth();
+
+        // Получаем текущий год
+        var currentYear = currentDate.getFullYear();
+
+        // Получаем количество дней в текущем месяце
+        var daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+        // Получаем день недели первого дня текущего месяца (от 0 до 6, где 0 - воскресенье)
+        var firstDayOfWeek = (new Date(currentYear, currentMonth, 1).getDay() - 1 + 7) % 7;
+
+        // Создаем таблицу календаря
+        var calendarTable = document.getElementById("calendar-body");
+
+        // Очищаем таблицу
+        calendarTable.innerHTML = "";
+
+        // Создаем строки и ячейки для каждого дня месяца
+        var date = 1;
+        for (var i = 0; i < 6; i++) {
+            var row = document.createElement("tr");
+
+            for (var j = 0; j < 7; j++) {
+                if (i === 0 && j < firstDayOfWeek) {
+                    // Пустая ячейка до первого дня месяца
+                    var cell = document.createElement("td");
+                    row.appendChild(cell);
+                } else if (date > daysInMonth) {
+                    // Пустая ячейка после последнего дня месяца
+                    break;
+                } else {
+                    // Ячейка с датой
+                    var cell = document.createElement("td");
+                    cell.innerText = date;
+                    row.appendChild(cell);
+                    date++;
+                }
+            }
+
+            calendarTable.appendChild(row);
+
+            if (date > daysInMonth) {
+                // Все дни месяца отображены, выходим из цикла
+                break;
+            }
+        }
+    </script>
+</body>
+</html>
